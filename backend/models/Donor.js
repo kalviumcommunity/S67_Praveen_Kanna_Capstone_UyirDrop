@@ -10,10 +10,14 @@ const donorSchema = new mongoose.Schema({
         type: String,
         required: true,
         enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
+
     },
     lastDonation: Date,
+
     location: String,
+
     phone: String,
+    
     isAvailable: {
         type: Boolean,
         default: true
