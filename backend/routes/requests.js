@@ -3,6 +3,7 @@ import auth from '../middleware/auth.js';
 import Request from '../models/Request.js';
 
 const router = express.Router();
+
 router.post('/', auth, async (req, res) => {
     try {
         const request = new Request({
@@ -15,8 +16,6 @@ router.post('/', auth, async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 });
-
-
 
 router.get('/', async (req, res) => {
     try {
@@ -58,4 +57,23 @@ router.patch('/:id/status', auth, async (req, res) => {
     }
 });
 
-export default router;
+router.put('/:id', auth, async (req, res) => {
+    try {
+        const request = await Request.findById(req.params.id);
+        if (!request) {
+            return res.status(404).json({ message: 'Request not found' });
+        }
+        
+        if (request.userId.toString() !== req.user._id.toString()) {
+            return res.status(403).json({ message: 'Not authorized' });
+        }
+
+        Object.assign(request, req.body);
+        await request.save();
+        res.json(request);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
+export default routerfor;
