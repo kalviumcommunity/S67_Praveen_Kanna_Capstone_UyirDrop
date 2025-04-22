@@ -76,4 +76,4 @@ router.put('/:id', auth, async (req, res) => {
     }
 });
 
-export default routerfor;
+export default router;
