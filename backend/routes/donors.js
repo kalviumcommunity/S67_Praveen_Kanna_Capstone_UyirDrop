@@ -14,6 +14,7 @@ router.post('/', auth, async (req, res) => {
         res.status(201).json(donor);
     } catch (error) {
         res.status(400).json({ message: error.message });
+
     }
 });
 
@@ -21,6 +22,7 @@ router.post('/', auth, async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const donors = await Donor.find({ isAvailable: true })
+
             .populate('userId', 'name email');
         res.json(donors);
     } catch (error) {
@@ -54,4 +56,4 @@ router.patch('/availability', auth, async (req, res) => {
     }
 });
 
-export default router;
+export default router; 
