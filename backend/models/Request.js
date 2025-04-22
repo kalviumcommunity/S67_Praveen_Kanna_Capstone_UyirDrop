@@ -21,14 +21,22 @@ const requestSchema = new mongoose.Schema({
         enum: ['urgent', 'normal'],
         default: 'normal'
     },
-    hospital: String,
-    location: String,
-    contact: String,
+    hospital: {
+        type: String
+    },
+    location: {
+        type: String
+    },
+    contact: {
+        type: String
+    },
     status: {
         type: String,
         enum: ['pending', 'fulfilled', 'cancelled'],
         default: 'pending'
     }
-}, { timestamps: true });
+}, {
+    timestamps: true 
+});
 
 export default mongoose.model('Request', requestSchema);
