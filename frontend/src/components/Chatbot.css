@@ -4,21 +4,21 @@
   bottom: 32px;
   right: 32px;
   z-index: 12000;
-}
+} 
 
 .chatbot-fab {
   background: #e53e3e;
   color: #fff;
   border: none;
-  border-radius: 50%;
+  border-radius: 50%;  
   width: 60px;
   height: 60px;
   font-size: 2rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15); 
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
   display: flex;
-  align-items: center;
+  align-items: center; 
   justify-content: center;
   animation: chatbot-fab-pop 0.5s;
 }

@@ -35,11 +35,11 @@ const Register = () => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
-      return;
+      return; 
     }
 
     setIsLoading(true);
