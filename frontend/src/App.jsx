@@ -22,6 +22,9 @@ function App() {
       </AuthProvider>
     </ErrorBoundary>
   );
+   
+   
+
 }
 
 export default App;
