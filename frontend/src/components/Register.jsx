@@ -13,7 +13,8 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    profilePhoto: null
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -44,8 +45,15 @@ const Register = () => {
 
     setIsLoading(true);
     try {
-      const { confirmPassword, ...registrationData } = formData;
-      await register(registrationData);
+      const { confirmPassword, profilePhoto, ...registrationData } = formData;
+      const formDataNew = new FormData();
+      Object.keys(registrationData).forEach(key => {
+        formDataNew.append(key, registrationData[key]);
+      });
+      if (profilePhoto) {
+        formDataNew.append('profilePhoto', profilePhoto);
+      }
+      await register(formDataNew);
       addToast('Registration successful!', 'success');
       navigate('/');
     } catch (error) {
@@ -57,11 +65,18 @@ const Register = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    const { name, value, files } = e.target;
+    if (files) {
+      setFormData(prev => ({
+        ...prev,
+        profilePhoto: files[0]
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
@@ -128,6 +143,16 @@ const Register = () => {
               required
             />
             {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="profilePhoto">Profile Photo</label>
+            <input
+              type="file"
+              name="profilePhoto"
+              accept=".png, .jpg, .jpeg"
+              onChange={handleChange}
+            />
           </div>
 
           <button type="submit" className="auth-button" disabled={isLoading}>
