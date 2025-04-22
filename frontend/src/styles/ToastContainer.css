@@ -1,0 +1,26 @@
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.toast-container .toast {
+  position: relative;
+  bottom: unset;
+  right: unset;
+}
+
+@media (max-width: 768px) {
+  .toast-container {
+    left: 20px;
+  }
+  
+  .toast-container .toast {
+    min-width: unset;
+    width: calc(100vw - 40px);
+  }
+}
