@@ -9,10 +9,10 @@ const DonorRegistration = () => {
     const [formData, setFormData] = useState({
         name: '',
         age: '',
-        bloodType: '',
+        bloodType: '', 
         phone: '',
         email: '',
-        address: '',
+        address: '', 
         lastDonation: '',
         medicalHistory: ''
     });
@@ -22,7 +22,7 @@ const DonorRegistration = () => {
     const validateForm = () => {
         const newErrors = {};
         if (!formData.name.trim()) newErrors.name = 'Name is required';
-        if (!formData.age) newErrors.age = 'Age is required';
+        if (!formData.age) newErrors.age = 'Age is required.'; 
         else if (formData.age < 18 || formData.age > 65) newErrors.age = 'Age must be between 18 and 65';
         if (!formData.bloodType) newErrors.bloodType = 'Blood type is required';
         if (!formData.phone) newErrors.phone = 'Phone number is required';

@@ -1,11 +1,11 @@
 import '../styles/Toast.css'
 
-const Toast = ({ message, type }) => {
+const Toast = ({ message, type }) => { 
   return (
-    <div className={`toast ${type}`}>
-      {message}
-    </div>
+    <div className={`toast ${type}`}> 
+      {message} 
+    </div>  
   );
 };
 
-export default Toast;
+export default Toast; 
