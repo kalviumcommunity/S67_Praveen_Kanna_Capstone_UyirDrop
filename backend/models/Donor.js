@@ -9,15 +9,12 @@ const donorSchema = new mongoose.Schema({
     bloodType: {
         type: String,
         required: true,
-        enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
+        enum: ['A+', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-','A-']
 
     },
     lastDonation: Date,
-
     location: String,
-
     phone: String,
-    
     isAvailable: {
         type: Boolean,
         default: true
