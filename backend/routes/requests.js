@@ -63,12 +63,18 @@ router.put('/:id', auth, async (req, res) => {
         if (!request) {
             return res.status(404).json({ message: 'Request not found' });
         }
-        
+
         if (request.userId.toString() !== req.user._id.toString()) {
             return res.status(403).json({ message: 'Not authorized' });
         }
 
-        Object.assign(request, req.body);
+        const allowedUpdates = ['title', 'description', 'urgency']; 
+        for (let key of allowedUpdates) {
+            if (req.body[key] !== undefined) {
+                request[key] = req.body[key];
+            }
+        }
+
         await request.save();
         res.json(request);
     } catch (error) {
